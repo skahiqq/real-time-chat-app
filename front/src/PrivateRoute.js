@@ -7,7 +7,6 @@ import { selectIsUserAuth } from './features/auth/AuthSlice';
 const ProtectedRoute = ({ element: Element, ...rest }) => {
     const isAuthenticated = useSelector(selectIsUserAuth);
     const location = useLocation();
-    console.log('PrivateRoute: isAuthenticated', isAuthenticated);
 
     return isAuthenticated ? (
         <Element {...rest} />

@@ -7,7 +7,6 @@ import { selectIsUserAuth } from './features/auth/AuthSlice';
 const PublicRoute = ({ element: Element, ...rest }) => {
     const isAuthenticated = useSelector(selectIsUserAuth);
     const location = useLocation();
-    console.log('PublicRoute: isAuthenticated', isAuthenticated);
 
     return !isAuthenticated ? (
         <Element {...rest} /> // Render the component if not authenticated
