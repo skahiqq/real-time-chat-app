@@ -19,7 +19,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/users/login', credentials);
+            const response = await axios.post('/users', credentials);
             dispatch(login(response.data.token));
         } catch (err) {
             console.error('Registration failed:', error);
