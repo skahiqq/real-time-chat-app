@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password is required'],
         //select: false, // remove from json,
         minLength: [6, 'Password length must be at least 6 characters'] // min 6 characters
-    }
+    },
+    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }]
 });
 
 userSchema.pre('save', async function (next) {
