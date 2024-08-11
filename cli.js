@@ -123,12 +123,32 @@ ensureDirSync(path.join(__dirname, 'app/models'));
 
 const {command, name, options} = parseArgs();
 
-if (command === 'make:controller' && name) {
-    generateController(name);
-} else if (command === 'make:model' && name) {
-    generateModel(name, options).then(() => rl.close());
-} else {
-    console.error('Unknown command or missing name. Usage:');
-    console.log('  create:controller <name>');
-    console.log('  create:model <name>');
+switch (command) {
+    case 'make:controller':
+        generateController(name);
+        break;
+    case 'make:model':
+        generateModel(name, options).then(() => rl.close());
+        break;
+        case 'help':
+        console.log(`
+Usage: mycli <command> [options]
+
+Commands:
+  make:controller <name>    Create a new controller
+  make:model <name>         Create a new model
+  help                      Display help information
+
+Options:
+  -r, --resource            Create a resource controller along with the model
+`);
+            rl.close();
+            break;
+    default:
+        console.error('Unknown command type: mycli help  for more info' +
+            '');
+        // create:controller <name>
+        //   create:model <name>
+        rl.close();
+        break;
 }
